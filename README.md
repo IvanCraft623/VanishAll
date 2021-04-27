@@ -8,7 +8,7 @@ Command | Description | Permission
 `/vall view` | View vanished players. | vanisall.use
 `/vall credits` | See VanishAll Credits. | None
 
-# Project information
+# Repository information
 Version | Pocketmine API | PHP | Status
 --- | --- | --- | ---
 0.0.1 | 3.0.0 | 7.3 => 8 | Functional
