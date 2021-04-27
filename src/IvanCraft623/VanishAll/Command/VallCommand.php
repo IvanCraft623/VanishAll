@@ -72,8 +72,33 @@ class VallCommand extends PluginCommand {
 						$sender->sendMessage("§cThis command is only available in the game!");
 						return true;
 					}
-					VanishAll::$allowView[] = $sender->getName();
-					$sender->sendMessage(VanishAll::getPrefix() . "§aYou can now view vanished players");
+					if (isset($args[1])) {
+						switch ($args[1]) {
+							case 'on':
+								if (in_array($sender->getName(), VanishAll::$allowView)) {
+									$sender->sendMessage("§cYou are already allowed to view vanished players!");
+									return true;
+								}
+								VanishAll::$allowView[] = $sender->getName();
+								$sender->sendMessage(VanishAll::getPrefix() . "§aYou can now view vanished players");
+							break;
+
+							case 'off':
+								foreach (VanishAll::$allowView as $index => $player) {
+									if ($sender->getName() == $player) {
+										unset(VanishAll::$allowView[$index]);
+									}
+								}
+								$sender->sendMessage("§cYou can no longer view vanished players.!");
+							break;
+							
+							default:
+								$sender->sendMessage("§cUse: /vall view <on|off>");
+							break;
+						}
+					} else {
+						$sender->sendMessage("§cUse: /vall view <on|off>");
+					}
 				break;
 
 				case 'credits':
