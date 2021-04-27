@@ -10,6 +10,12 @@ use pocketmine\{Server, Player, scheduler\Task};
 
 class VanishTask extends Task {
 
+	public $plugin;
+
+	public function __construct(VanishAll $plugin) {
+		$this->plugin = $plugin;
+	}
+
 	public function onRun(int $currentTick) : void {
 		if (VanishAll::$vanisAll) {
 			foreach (Server::getInstance()->getOnlinePlayers() as $player) { # Player to vanish
